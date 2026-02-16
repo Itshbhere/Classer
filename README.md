@@ -14,9 +14,9 @@ Classer is a CLI tool that automatically generates strongly-typed TypeScript or 
 To use it, you can install it globally or use `npx`:
 
 ```bash
-npm install -g classer
+npm install -g sol-classer
 # OR
-npx classer [options]
+npx sol-classer [options]
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npx classer [options]
 Basic usage:
 
 ```bash
-classer \
+sol-classer \
   --abi <path_to_abi> \
   --name <ClassName> \
   --address <ContractAddress> \
@@ -45,7 +45,7 @@ classer \
 
 **1. Standard TypeScript Class (RPC Provider)**
 ```bash
-classer \
+sol-classer \
   --abi test/samples/ERC20.json \
   --name MyToken \
   --address 0x123... \
@@ -56,7 +56,7 @@ classer \
 **2. Browser/Frontend Class (Window Provider)**
 This generates a class that connects to `window.ethereum` and handles wallet connection.
 ```bash
-classer \
+sol-classer \
   --abi ABI/ABI.js \
   --name FrontendToken \
   --address 0x456... \
@@ -73,7 +73,7 @@ await token.transfer("0xUser", "10");
 
 **3. JavaScript Class (No Types)**
 ```bash
-classer \
+sol-classer \
   --abi test/samples/ERC20.json \
   --name LegacyToken \
   --address 0x789... \
