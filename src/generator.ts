@@ -236,8 +236,8 @@ export function generateClass({
 
         methodsCode = `
     async init()${isTs ? ": Promise<void>" : ""} {
-        if (typeof window !== "undefined" && (window as any).ethereum) {
-            this.provider = new ethers.BrowserProvider((window as any).ethereum);
+        if (typeof window !== "undefined" && ${isTs ? "(window as any).ethereum" : "window.ethereum"}) {
+            this.provider = new ethers.BrowserProvider(${isTs ? "(window as any).ethereum" : "window.ethereum"});
         } else {
             throw new Error("window.ethereum is not available");
         }
