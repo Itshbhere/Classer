@@ -1,10 +1,10 @@
 {
   "name": "sol-classer",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "sol-classer": "./dist/index.js"
+    "sol-classer": "dist/index.js"
   },
   "repository": {
     "type": "git",
