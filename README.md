@@ -14,9 +14,9 @@ Classer is a CLI tool that automatically generates strongly-typed TypeScript or 
 To use it, you can install it globally or use `npx`:
 
 ```bash
-npm install -g sol-classer
+npm install -g @itshbhere/sol-classer
 # OR
-npx sol-classer [options]
+npx @itshbhere/sol-classer [options]
 ```
 
 ## Usage

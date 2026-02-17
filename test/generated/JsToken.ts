@@ -992,8 +992,13 @@ const ABI = [
 
 export class JsToken {
     
+    private provider: ethers.Provider | ethers.BrowserProvider | null; 
+    private signer: ethers.Signer | null;
+    private contract: ethers.Contract | null;
+    private contractAddress: string;
+  
     
-    constructor(contractAddress = "0x9876543210987654321098765432109876543210", privateKey, rpcUrl) {
+    constructor(contractAddress: string = "0x9876543210987654321098765432109876543210", privateKey?: string, rpcUrl?: string) {
         this.contractAddress = contractAddress;
         this.contract = null;
         this.signer = null;
@@ -1011,7 +1016,7 @@ export class JsToken {
       
     
     
-    async initializeContract() {
+    async initializeContract(): Promise<void> {
         if (this.contract) return;
         
         try {
@@ -1035,7 +1040,7 @@ export class JsToken {
     // Write functions
     // -------------------------
     
-  async buyDirectSale(tokenId) {
+  async buyDirectSale(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1052,7 +1057,7 @@ export class JsToken {
   }
 
 
-  async cancelDirectSale(tokenId) {
+  async cancelDirectSale(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1069,7 +1074,7 @@ export class JsToken {
   }
 
 
-  async cancelRentSale(tokenId) {
+  async cancelRentSale(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1086,7 +1091,7 @@ export class JsToken {
   }
 
 
-  async createAuction(tokenId, startingPrice, duration) {
+  async createAuction(tokenId: string | number | bigint, startingPrice: string | number | bigint, duration: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1103,7 +1108,7 @@ export class JsToken {
   }
 
 
-  async createDirectSale(tokenId, price) {
+  async createDirectSale(tokenId: string | number | bigint, price: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1120,7 +1125,7 @@ export class JsToken {
   }
 
 
-  async createRentSale(tokenId, price, duration) {
+  async createRentSale(tokenId: string | number | bigint, price: string | number | bigint, duration: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1137,7 +1142,7 @@ export class JsToken {
   }
 
 
-  async endAuction(tokenId) {
+  async endAuction(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1154,7 +1159,7 @@ export class JsToken {
   }
 
 
-  async pause() {
+  async pause(): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1171,7 +1176,7 @@ export class JsToken {
   }
 
 
-  async placeBid(tokenId) {
+  async placeBid(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1188,7 +1193,7 @@ export class JsToken {
   }
 
 
-  async renounceOwnership() {
+  async renounceOwnership(): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1205,7 +1210,7 @@ export class JsToken {
   }
 
 
-  async rentNFT(tokenId) {
+  async rentNFT(tokenId: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1222,7 +1227,7 @@ export class JsToken {
   }
 
 
-  async setNftContract(_nft) {
+  async setNftContract(_nft: string): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1239,7 +1244,7 @@ export class JsToken {
   }
 
 
-  async setPlatformFee(fee) {
+  async setPlatformFee(fee: string | number | bigint): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1256,7 +1261,7 @@ export class JsToken {
   }
 
 
-  async transferOwnership(newOwner) {
+  async transferOwnership(newOwner: string): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1273,7 +1278,7 @@ export class JsToken {
   }
 
 
-  async unpause() {
+  async unpause(): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1290,7 +1295,7 @@ export class JsToken {
   }
 
 
-  async withdraw() {
+  async withdraw(): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1307,7 +1312,7 @@ export class JsToken {
   }
 
 
-  async withdrawPlatformFees() {
+  async withdrawPlatformFees(): Promise<ethers.ContractTransactionResponse> {
       try {
         await this.initializeContract();
         if (!this.contract.runner) {
@@ -1328,7 +1333,7 @@ export class JsToken {
     // Read functions
     // -------------------------
     
-  async AUCTION_EXTENSION_TIME() {
+  async AUCTION_EXTENSION_TIME(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.AUCTION_EXTENSION_TIME();
@@ -1339,7 +1344,7 @@ export class JsToken {
   }
 
 
-  async MINIMUM_BID_INCREMENT() {
+  async MINIMUM_BID_INCREMENT(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.MINIMUM_BID_INCREMENT();
@@ -1350,7 +1355,7 @@ export class JsToken {
   }
 
 
-  async activeAuctions(arg0) {
+  async activeAuctions(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.activeAuctions(arg0);
@@ -1361,7 +1366,7 @@ export class JsToken {
   }
 
 
-  async activeDirectSales(arg0) {
+  async activeDirectSales(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.activeDirectSales(arg0);
@@ -1372,7 +1377,7 @@ export class JsToken {
   }
 
 
-  async activeRentSales(arg0) {
+  async activeRentSales(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.activeRentSales(arg0);
@@ -1383,7 +1388,7 @@ export class JsToken {
   }
 
 
-  async auctions(arg0) {
+  async auctions(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.auctions(arg0);
@@ -1394,7 +1399,7 @@ export class JsToken {
   }
 
 
-  async directSales(arg0) {
+  async directSales(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.directSales(arg0);
@@ -1405,7 +1410,7 @@ export class JsToken {
   }
 
 
-  async getActiveAuctionTokenIds() {
+  async getActiveAuctionTokenIds(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getActiveAuctionTokenIds();
@@ -1416,7 +1421,7 @@ export class JsToken {
   }
 
 
-  async getActiveDirectSaleTokenIds() {
+  async getActiveDirectSaleTokenIds(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getActiveDirectSaleTokenIds();
@@ -1427,7 +1432,7 @@ export class JsToken {
   }
 
 
-  async getActiveListingsCounts() {
+  async getActiveListingsCounts(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getActiveListingsCounts();
@@ -1438,7 +1443,7 @@ export class JsToken {
   }
 
 
-  async getActiveRentSaleTokenIds() {
+  async getActiveRentSaleTokenIds(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getActiveRentSaleTokenIds();
@@ -1449,7 +1454,7 @@ export class JsToken {
   }
 
 
-  async getAllActiveAuctions() {
+  async getAllActiveAuctions(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getAllActiveAuctions();
@@ -1460,7 +1465,7 @@ export class JsToken {
   }
 
 
-  async getAllActiveDirectSales() {
+  async getAllActiveDirectSales(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getAllActiveDirectSales();
@@ -1471,7 +1476,7 @@ export class JsToken {
   }
 
 
-  async getAllActiveRentSales() {
+  async getAllActiveRentSales(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.getAllActiveRentSales();
@@ -1482,7 +1487,7 @@ export class JsToken {
   }
 
 
-  async nft() {
+  async nft(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.nft();
@@ -1493,7 +1498,7 @@ export class JsToken {
   }
 
 
-  async owner() {
+  async owner(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.owner();
@@ -1504,7 +1509,7 @@ export class JsToken {
   }
 
 
-  async paused() {
+  async paused(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.paused();
@@ -1515,7 +1520,7 @@ export class JsToken {
   }
 
 
-  async pendingReturns(arg0) {
+  async pendingReturns(arg0: string): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.pendingReturns(arg0);
@@ -1526,7 +1531,7 @@ export class JsToken {
   }
 
 
-  async platformFee() {
+  async platformFee(): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.platformFee();
@@ -1537,7 +1542,7 @@ export class JsToken {
   }
 
 
-  async rentSales(arg0) {
+  async rentSales(arg0: string | number | bigint): Promise<any> {
       try {
         await this.initializeContract();
         return await this.contract.rentSales(arg0);

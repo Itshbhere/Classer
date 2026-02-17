@@ -1,10 +1,17 @@
 {
-  "name": "sol-classer",
-  "version": "1.0.0",
+  "name": "@itshbhere/sol-classer",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "bin": {
     "sol-classer": "./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Itshbhere/Classer.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "files": [
     "dist"
@@ -20,6 +27,7 @@
   "type": "commonjs",
   "dependencies": {
     "commander": "^14.0.3",
+    "dotenv": "^17.3.1",
     "ethers": "^6.16.0",
     "fs-extra": "^11.3.3",
     "jiti": "^2.6.1"
