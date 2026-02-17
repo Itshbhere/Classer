@@ -3,11 +3,14 @@ import { Command } from "commander";
 import path from "path";
 import { loadAbi, writefile } from "./utils";
 import { generateClass } from "./generator";
+import { readFileSync } from "fs";
+
+const packageJson = JSON.parse(readFileSync(path.join(__dirname, "../package.json"), "utf-8"));
 
 const program = new Command();
 
 program
-    .version("1.0.0")
+    .version(packageJson.version)
     .description("Generate TypeScript class from ABI JSON")
     .requiredOption("-a, --abi <path>", "Path to ABI JSON file")
     .requiredOption("-n, --name <name>", "Name of the class to generate")
